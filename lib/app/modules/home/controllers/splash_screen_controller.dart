@@ -1,17 +1,23 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:notify_me/app/data/models/center_list.dart';
 import 'package:notify_me/app/data/models/districts_list_model.dart';
 import 'package:notify_me/app/routes/app_pages.dart';
 import 'package:notify_me/app/states_list_model.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SplashScreenController extends GetxController {
   Position position;
   Address address;
   int currentStateId;
   int currentDistrictId;
+  GetStorage box;
 
   List<DateTime> datesList = [
     for (var i = 0; i < 15; i++) DateTime.now().add(Duration(days: i)),
@@ -20,6 +26,7 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() {
     print('init');
+    box = GetStorage();
     getData();
     super.onInit();
   }
@@ -56,18 +63,26 @@ class SplashScreenController extends GetxController {
         .districtId;
     printInfo(info: currentDistrictId.toString());
 
-    printInfo(info: currentDistrictId.toString());
+    box.write('districtId', currentDistrictId);
+    box.write('stateId', currentStateId);
 
     Future.delayed(Duration(milliseconds: 600))
         .then((value) => Get.offNamed(Routes.HOME));
   }
 
   Future<void> getLocation() async {
-    await Geolocator.requestPermission();
-    position = await Geolocator.getCurrentPosition();
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(
-        Coordinates(position.latitude, position.longitude));
-    address = addresses.first;
+    try {
+      await Geolocator.requestPermission();
+      position = await Geolocator.getCurrentPosition();
+      var addresses = await Geocoder.local.findAddressesFromCoordinates(
+          Coordinates(position.latitude, position.longitude));
+      address = addresses.first;
+
+      box.write('address', jsonEncode(address.toMap()));
+    } on Exception catch (e) {
+      VxToast.show(Get.context,
+          bgColor: Colors.red, msg: 'Error Getting Location!: $e');
+    }
   }
 
   Future<CenterList> getCenterDetails(DateTime date) async {
