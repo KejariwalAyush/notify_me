@@ -51,23 +51,27 @@ Future<void> checkAvailability() async {
               .toList()
               .contains(true))
           .contains(true);
-      // if (isAvailable)
-      //   print(
-      //       'Vaccine Available in your district Go Book soon! on Date: ${DateFormat.yMEd().format(date)}');
+      if (isAvailable)
+        print(
+            'Vaccine Available in your district Go Book soon! on Date: ${DateFormat.yMEd().format(date)}');
       // print(
       //     'Vaccine Available in your district Go Book soon! on Date: ${DateFormat.yMEd().format(date)}');
 
-      // if (isAvailable)
-      AwesomeNotifications().createNotification(
-          content: NotificationContent(
-        id: date.millisecondsSinceEpoch % 100,
-        channelKey: 'basic_channel',
-        title: 'Vaccine Slot Available',
-        body: 'On ${DateFormat.yMEd().format(date)} at your District.',
-        backgroundColor: lightGreen,
-        notificationLayout: NotificationLayout.Messaging,
-        showWhen: true,
-      ));
+      if (isAvailable)
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+                id: date.millisecondsSinceEpoch % 100,
+                channelKey: 'basic_channel',
+                title: 'Vaccine Slot Available',
+                body: 'On ${DateFormat.yMEd().format(date)} at your District.',
+                backgroundColor: lightGreen,
+                color: deepGreen,
+                displayOnBackground: true,
+                displayOnForeground: false,
+                customSound: 'assets/sounds/notification_fantacy.wav',
+                notificationLayout: NotificationLayout.Messaging,
+                showWhen: true,
+                ticker: 'Vaccine Available'));
     }
 
     print('bg-fetch complete............................................');
@@ -140,11 +144,11 @@ void initializeNotification() {
       null,
       [
         NotificationChannel(
-            channelKey: 'basic_channel',
-            channelName: 'Basic notifications',
-            channelDescription: 'Notification channel for basic tests',
-            defaultColor: deepGreen,
-            ledColor: Colors.white)
+          channelKey: 'basic_channel',
+          channelName: 'Basic notifications',
+          channelDescription: 'Notification channel for basic tests',
+          defaultColor: deepGreen,
+        )
       ]);
   AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
     if (!isAllowed) {

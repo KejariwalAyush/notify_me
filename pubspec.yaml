@@ -12,6 +12,8 @@ dependencies:
   background_fetch: ^0.7.2
   contained_tab_bar_view: 0.7.1
   cupertino_icons: ^1.0.2
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
   geocoder: ^0.2.1
   geolocator: ^7.0.3
   get: 4.1.4
@@ -21,9 +23,23 @@ dependencies:
   intl: ^0.17.0
   velocity_x: ^3.0.0
 
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/icons/logo.png"
+  image_path_android: "assets/icons/logo.png"
+
+flutter_native_splash:
+  image: "assets/icons/logo.png"
+  color: "#EBECEC"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/sounds/

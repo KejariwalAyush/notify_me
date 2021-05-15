@@ -52,7 +52,7 @@ class SplashScreenController extends GetxController {
         .singleWhere((e) =>
             (e.stateName.toLowerCase() == address.adminArea.toLowerCase()))
         .stateId;
-    printInfo(info: currentStateId.toString());
+    // printInfo(info: currentStateId.toString());
 
     http.Response resp2 = await http.get(Uri.parse(
         'https://cdn-api.co-vin.in/api/v2/admin/location/districts/$currentStateId'));
@@ -61,7 +61,7 @@ class SplashScreenController extends GetxController {
         .singleWhere((e) => (e.districtName.toLowerCase() ==
             address.subAdminArea.toLowerCase()))
         .districtId;
-    printInfo(info: currentDistrictId.toString());
+    // printInfo(info: currentDistrictId.toString());
 
     box.write('districtId', currentDistrictId);
     box.write('stateId', currentStateId);
