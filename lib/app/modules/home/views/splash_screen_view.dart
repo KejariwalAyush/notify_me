@@ -12,12 +12,15 @@ class SplashScreenView extends GetView<SplashScreenController> {
     return Scaffold(
       body: Column(
         children: [
+          Get.context.mediaQueryPadding.top.heightBox,
+          Get.context.mediaQueryPadding.top.heightBox,
+          SizedBox(height: 200, child: Image.asset('assets/icons/logo.png')),
           Expanded(
             child: Center(
                 child: VxTicket(
               backgroundColor: green,
               isTwoSided: true,
-              height: 300,
+              // height: 200,
               isHardEdged: false,
               width: Get.width,
               child: Center(
