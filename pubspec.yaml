@@ -1,0 +1,28 @@
+name: notify_me
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  awesome_notifications: ^0.0.6+5
+  background_fetch: ^0.7.2
+  contained_tab_bar_view: 0.7.1
+  cupertino_icons: ^1.0.2
+  geocoder: ^0.2.1
+  geolocator: ^7.0.3
+  get: 4.1.4
+  google_fonts: ^2.1.0
+  http: ^0.13.3
+  intl: ^0.17.0
+  velocity_x: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
