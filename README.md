@@ -18,4 +18,4 @@ A flutter app to notify users about vaccine slots availability in their area.
 
 ## Screenshots
 
-!['ScreenShot']('https://github.com/KejariwalAyush/notify_me/blob/master/screenshot.PNG?raw=true')
+![App Screenshot]('https://raw.githubusercontent.com/KejariwalAyush/notify_me/master/screenshot.PNG')
