@@ -17,3 +17,5 @@ A flutter app to notify users about vaccine slots availability in their area.
 - Fast UI Development using [VelocityX]('https://velocityx.dev/')
 
 ## Screenshots
+
+!['ScreenShot']('https://github.com/KejariwalAyush/notify_me/blob/master/screenshot.PNG?raw=true')
