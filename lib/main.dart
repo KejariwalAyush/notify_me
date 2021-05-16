@@ -65,21 +65,25 @@ Future<void> checkAvailability() async {
       DateTime date = currentdate.add(Duration(days: i));
       String dateString = '${date.day}-${date.month}-${date.year}';
       final _url =
+          // 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=453&date=20-05-2021';
           'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=$currentDistrictId&date=$dateString';
       // print(_url);
       var centerList = await http
           .get(Uri.parse(_url))
           .then((value) => CenterList.fromJson(value.body));
-
-      centerList.centers.map((e) => e.sessions.map((el) {
-            if (el.availableCapacity > 0) ifAvailable(e);
-          }));
-
-      // if (isAvailable)
-      // ifAvailable();
-
+      bool isAvailable = false;
+      for (var e in centerList.centers) {
+        // print('Center: ${e.name}');
+        var avail = e.sessions
+            .map((el) => el.availableCapacity > 0)
+            .toList()
+            .toSet()
+            .toList();
+        if (avail.contains(true)) ifAvailable(e);
+        if (avail.contains(true)) isAvailable = true;
+      }
+      if (isAvailable) break;
     }
-
     print('bg-fetch complete............................................');
   }
 }
@@ -99,7 +103,8 @@ void ifAvailable(CenterDetails e) {
             id: e.centerId,
             channelKey: 'basic_channel',
             title: 'Vaccinate at ${e.name}',
-            body: 'On ${session.date} at ${e.pincode}',
+            body:
+                'On ${session.date} at ${e.pincode}, ${session.availableCapacity} slots available.',
             summary: '${session.vaccine} for ${session.minAgeLimit}+',
             backgroundColor: lightGreen,
             color: deepGreen,
@@ -133,7 +138,7 @@ Future<void> initPlatformState() async {
     // This is the fetch-event callback.
     print("[BackgroundFetch] Event received $taskId");
 
-    checkAvailability();
+    await checkAvailability();
 
     // IMPORTANT:  You must signal completion of your task or the OS can punish your app
     // for taking too long in the background.

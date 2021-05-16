@@ -7,9 +7,9 @@ import 'package:velocity_x/velocity_x.dart';
 import '../controllers/settings_controller.dart';
 
 class SettingsView extends GetView<SettingsController> {
-  final RxBool darkMode = Get.isDarkMode.obs;
   @override
   Widget build(BuildContext context) {
+    RxBool darkMode = false.obs;
     return Scaffold(
       backgroundColor: lightGreen,
       bottomSheet: Container(
@@ -80,7 +80,10 @@ class SettingsView extends GetView<SettingsController> {
                       Obx(() => SwitchListTile(
                             value: darkMode.value,
                             onChanged: (value) {
-                              darkMode.toggle();
+                              print(value);
+                              darkMode.update((val) {
+                                val = value;
+                              });
                               if (darkMode.value)
                                 Get.changeThemeMode(ThemeMode.light);
                               else
