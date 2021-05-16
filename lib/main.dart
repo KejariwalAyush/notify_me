@@ -61,7 +61,7 @@ Future<void> checkAvailability() async {
   var currentDistrictId = box.read('districtId');
   if (currentDistrictId != null) {
     DateTime currentdate = DateTime.now();
-    for (var i = 0; i < box.read('no_of_days') ?? 15; i++) {
+    for (var i = 0; i < (box.read('no_of_days') ?? 10); i++) {
       DateTime date = currentdate.add(Duration(days: i));
       String dateString = '${date.day}-${date.month}-${date.year}';
       final _url =

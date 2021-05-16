@@ -26,7 +26,7 @@ class SplashScreenController extends GetxController {
     print('init');
     box = GetStorage();
     datesList = [
-      for (var i = 0; i < box.read('no_of_days') ?? 15; i++)
+      for (var i = 0; i < (box.read('no_of_days') ?? 10); i++)
         DateTime.now().add(Duration(days: i)),
     ];
     getData();

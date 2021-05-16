@@ -33,7 +33,8 @@ class HomeView extends GetView {
                             print(e);
                           }
                         },
-                        child: 'CoWIN'.text.extraBlack.make()),
+                        child:
+                            'CoWIN'.text.extraBold.color(deepGreen).xl.make()),
                     IconButton(
                         icon: Icon(
                           Icons.settings_outlined,
