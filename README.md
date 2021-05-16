@@ -11,11 +11,11 @@ A flutter app to notify users about vaccine slots availability in their area.
 
 ## Working
 
-- App uses [backgroung fetch]('https://pub.dev/packages/background_fetch') & [awesome notifications]('https://pub.dev/packages/awesome_notifications') dependencies from pub.dev
-- Api Used in this app is [here]('https://apisetu.gov.in/api/cowin#/)
-- State Management - [GetX]('https://pub.dev/packages/get')
-- Fast UI Development using [VelocityX]('https://velocityx.dev/')
+- App uses [backgroung fetch](https://pub.dev/packages/background_fetch) & [awesome notifications](https://pub.dev/packages/awesome_notifications) dependencies from pub.dev
+- Api Used in this app is [here](https://apisetu.gov.in/api/cowin#/)
+- State Management - [GetX](https://pub.dev/packages/get)
+- Fast UI Development using [VelocityX](https://velocityx.dev/)
 
 ## Screenshots
 
-![App Screenshot]('https://raw.githubusercontent.com/KejariwalAyush/notify_me/master/screenshot.PNG')
+![App Screenshot](https://raw.githubusercontent.com/KejariwalAyush/notify_me/master/screenshot.PNG)
