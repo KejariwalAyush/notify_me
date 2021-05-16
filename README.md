@@ -1,16 +1,16 @@
-# notify_me
+# Notify Me
 
-A new Flutter project.
+A flutter app to notify users about vaccine slots in their area.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Get notified in every 15 mins.
+- Check all slots available in your district without any worries.
+- Sort your District wise data with respect to pincodes.
 
-A few resources to get you started if this is your first Flutter project:
+## Working
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- App uses [backgroung fetch]('https://pub.dev/packages/background_fetch') & [awesome notifications]('https://pub.dev/packages/awesome_notifications') dependencies from pub.dev
+- Api Used in this app is [here]('https://apisetu.gov.in/api/cowin#/)
+- State Management - [GetX]('https://pub.dev/packages/get')
+- Fast UI Development using [VelocityX]('https://velocityx.dev/')
