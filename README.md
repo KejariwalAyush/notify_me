@@ -1,10 +1,11 @@
 # Notify Me
 
-A flutter app to notify users about vaccine slots in their area.
+A flutter app to notify users about vaccine slots availability in their area.
 
 ## Features
 
-- Get notified in every 15 mins.
+- Get notified for available slots in your district.
+- Uses your location to get district and state, so that you dont have to select it.
 - Check all slots available in your district without any worries.
 - Sort your District wise data with respect to pincodes.
 
@@ -14,3 +15,5 @@ A flutter app to notify users about vaccine slots in their area.
 - Api Used in this app is [here]('https://apisetu.gov.in/api/cowin#/)
 - State Management - [GetX]('https://pub.dev/packages/get')
 - Fast UI Development using [VelocityX]('https://velocityx.dev/')
+
+## Screenshots
