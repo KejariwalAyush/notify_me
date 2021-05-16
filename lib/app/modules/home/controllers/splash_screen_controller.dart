@@ -19,14 +19,16 @@ class SplashScreenController extends GetxController {
   int currentDistrictId;
   GetStorage box;
 
-  List<DateTime> datesList = [
-    for (var i = 0; i < 15; i++) DateTime.now().add(Duration(days: i)),
-  ];
+  List<DateTime> datesList;
 
   @override
   void onInit() {
     print('init');
     box = GetStorage();
+    datesList = [
+      for (var i = 0; i < box.read('no_of_days') ?? 15; i++)
+        DateTime.now().add(Duration(days: i)),
+    ];
     getData();
     super.onInit();
   }

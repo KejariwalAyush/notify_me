@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:notify_me/app/data/config/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../controllers/settings_controller.dart';
@@ -9,20 +10,28 @@ import '../controllers/settings_controller.dart';
 class SettingsView extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
-    RxBool darkMode = false.obs;
     return Scaffold(
       backgroundColor: lightGreen,
-      bottomSheet: Container(
-        height: 20,
-        color: lightGreen,
-        child: 'Made with ❤ by Ayush Kejariwal'
-            .text
-            .center
-            .lg
-            .bold
-            .color(deepGreen)
-            .make()
-            .centered(),
+      bottomSheet: InkWell(
+        onTap: () {
+          try {
+            launch('https://github.com/KejariwalAyush');
+          } on Exception catch (e) {
+            print(e);
+          }
+        },
+        child: Container(
+          height: 30,
+          color: lightGreen,
+          child: 'Made with ❤ by Ayush Kejariwal'
+              .text
+              .center
+              .lg
+              .bold
+              .color(deepGreen)
+              .make()
+              .centered(),
+        ),
       ),
       body: Column(
         children: [
@@ -76,24 +85,24 @@ class SettingsView extends GetView<SettingsController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      'Themes'.text.xl2.make(),
-                      Obx(() => SwitchListTile(
-                            value: darkMode.value,
-                            onChanged: (value) {
-                              print(value);
-                              darkMode.update((val) {
-                                val = value;
-                              });
-                              if (darkMode.value)
-                                Get.changeThemeMode(ThemeMode.light);
-                              else
-                                Get.changeThemeMode(ThemeMode.dark);
-                            },
-                            title: 'DarkMode'.text.make(),
-                          )),
-                      Divider(
-                        color: deepGreen,
-                      ),
+                      // 'Themes'.text.xl2.make(),
+                      // Obx(() => SwitchListTile(
+                      //       value: darkMode.value,
+                      //       onChanged: (value) {
+                      //         print(value);
+                      //         darkMode.update((val) {
+                      //           val = value;
+                      //         });
+                      //         if (darkMode.value)
+                      //           Get.changeThemeMode(ThemeMode.light);
+                      //         else
+                      //           Get.changeThemeMode(ThemeMode.dark);
+                      //       },
+                      //       title: 'DarkMode'.text.make(),
+                      //     )),
+                      // Divider(
+                      //   color: deepGreen,
+                      // ),
                       'Notifications'.text.xl2.make(),
                       ListTile(
                         title: 'Time Interval (minutes)'.text.make(),
@@ -105,20 +114,21 @@ class SettingsView extends GetView<SettingsController> {
                           max: 120,
                           min: 15,
                           step: 15,
-                          defaultValue: 15,
+                          defaultValue: controller.timeInterval,
                           actionButtonColor: deepGreen,
                           actionIconColor: lightGreen,
+                          onChange: controller.onTimeIntervalChange,
                         ),
                       ),
-                      SwitchListTile(
-                        title: 'Get All Notifications'.text.make(),
-                        subtitle:
-                            'Will give you all notification for every single available slot'
-                                .text
-                                .make(),
-                        value: true,
-                        onChanged: (value) {},
-                      ),
+                      Obx(() => SwitchListTile(
+                            title: 'Get All Notifications'.text.make(),
+                            subtitle:
+                                'Will give you all notification for every single available slot'
+                                    .text
+                                    .make(),
+                            value: controller.notifyAll.value,
+                            onChanged: controller.getAllNotification,
+                          )),
                       Divider(
                         color: deepGreen,
                       ),
@@ -133,9 +143,10 @@ class SettingsView extends GetView<SettingsController> {
                           max: 20,
                           min: 5,
                           step: 1,
-                          defaultValue: 15,
+                          defaultValue: controller.noOfDays,
                           actionButtonColor: deepGreen,
                           actionIconColor: lightGreen,
+                          onChange: controller.onNoofDaysChange,
                         ),
                       ),
                       Divider(

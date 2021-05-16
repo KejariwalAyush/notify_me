@@ -7,6 +7,7 @@ import 'package:notify_me/app/data/config/colors.dart';
 import 'package:notify_me/app/data/models/center_list.dart';
 import 'package:notify_me/app/modules/home/controllers/splash_screen_controller.dart';
 import 'package:notify_me/app/routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeView extends GetView {
@@ -21,14 +22,25 @@ class HomeView extends GetView {
             child: Column(
               children: [
                 Get.context.mediaQueryPadding.top.heightBox,
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                      icon: Icon(
-                        Icons.settings_outlined,
-                        color: deepGreen,
-                      ),
-                      onPressed: () => Get.toNamed(Routes.SETTINGS)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          try {
+                            launch('https://cowin.gov.in/home');
+                          } on Exception catch (e) {
+                            print(e);
+                          }
+                        },
+                        child: 'CoWIN'.text.extraBlack.make()),
+                    IconButton(
+                        icon: Icon(
+                          Icons.settings_outlined,
+                          color: deepGreen,
+                        ),
+                        onPressed: () => Get.toNamed(Routes.SETTINGS)),
+                  ],
                 ),
                 Center(
                   child:
