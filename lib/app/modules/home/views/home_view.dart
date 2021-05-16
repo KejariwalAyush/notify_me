@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:notify_me/app/data/config/colors.dart';
 import 'package:notify_me/app/data/models/center_list.dart';
 import 'package:notify_me/app/modules/home/controllers/splash_screen_controller.dart';
+import 'package:notify_me/app/routes/app_pages.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeView extends GetView {
@@ -20,13 +21,15 @@ class HomeView extends GetView {
             child: Column(
               children: [
                 Get.context.mediaQueryPadding.top.heightBox,
-                TextButton.icon(
-                    icon: Icon(
-                      Icons.swap_horiz_rounded,
-                      color: deepGreen,
-                    ),
-                    label: 'Change Location'.text.color(deepGreen).make(),
-                    onPressed: () {}),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                      icon: Icon(
+                        Icons.settings_outlined,
+                        color: deepGreen,
+                      ),
+                      onPressed: () => Get.toNamed(Routes.SETTINGS)),
+                ),
                 Center(
                   child:
                       'Hello 👋🏼,\nYou are in ${controller?.address?.subAdminArea ?? '...'}'
@@ -230,13 +233,20 @@ class _CenterListDisplayState extends State<CenterListDisplay> {
                             .xl
                             .orange900
                             .make(),
-                        (centerDetails.sessions.first.vaccine +
-                                ': ' +
-                                centerDetails.sessions.first.minAgeLimit
-                                    .toString() +
-                                '+')
-                            .text
-                            .make()
+                        Row(
+                          children: [
+                            Expanded(
+                              child: (centerDetails.sessions.first.vaccine +
+                                      ': ' +
+                                      centerDetails.sessions.first.minAgeLimit
+                                          .toString() +
+                                      '+')
+                                  .text
+                                  .make(),
+                            ),
+                            (centerDetails.feeType).text.make(),
+                          ],
+                        )
                       ],
                     ),
                   ).px16().py4();

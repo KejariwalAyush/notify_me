@@ -113,6 +113,8 @@ class Session {
     this.minAgeLimit,
     this.vaccine,
     this.slots,
+    this.availableCapacityDose1,
+    this.availableCapacityDose2,
   });
 
   final String sessionId;
@@ -121,6 +123,8 @@ class Session {
   final int minAgeLimit;
   final String vaccine;
   final List<Slot> slots;
+  final int availableCapacityDose1;
+  final int availableCapacityDose2;
 
   factory Session.fromJson(String str) => Session.fromMap(json.decode(str));
 
@@ -138,6 +142,12 @@ class Session {
         slots: json["slots"] == null
             ? null
             : List<Slot>.from(json["slots"].map((x) => slotValues.map[x])),
+        availableCapacityDose1: json["available_capacity_dose1"] == null
+            ? null
+            : json["available_capacity_dose1"],
+        availableCapacityDose2: json["available_capacity_dose2"] == null
+            ? null
+            : json["available_capacity_dose2"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -150,6 +160,10 @@ class Session {
         "slots": slots == null
             ? null
             : List<dynamic>.from(slots.map((x) => slotValues.reverse[x])),
+        "available_capacity_dose1":
+            availableCapacityDose1 == null ? null : availableCapacityDose1,
+        "available_capacity_dose2":
+            availableCapacityDose2 == null ? null : availableCapacityDose2,
       };
 }
 

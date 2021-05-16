@@ -1,11 +1,11 @@
 // To parse this JSON data, do
 //
-//     final stateList = stateListFromMap(jsonString);
+//     final statesList = statesListFromMap(jsonString);
 
 import 'dart:convert';
 
-class StateList {
-  StateList({
+class StatesList {
+  StatesList({
     this.states,
     this.ttl,
   });
@@ -13,11 +13,12 @@ class StateList {
   final List<State> states;
   final int ttl;
 
-  factory StateList.fromJson(String str) => StateList.fromMap(json.decode(str));
+  factory StatesList.fromJson(String str) =>
+      StatesList.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory StateList.fromMap(Map<String, dynamic> json) => StateList(
+  factory StatesList.fromMap(Map<String, dynamic> json) => StatesList(
         states: json["states"] == null
             ? null
             : List<State>.from(json["states"].map((x) => State.fromMap(x))),

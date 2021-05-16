@@ -8,8 +8,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:notify_me/app/data/models/center_list.dart';
 import 'package:notify_me/app/data/models/districts_list_model.dart';
+import 'package:notify_me/app/data/models/states_list_model.dart';
 import 'package:notify_me/app/routes/app_pages.dart';
-import 'package:notify_me/app/states_list_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SplashScreenController extends GetxController {
