@@ -19,3 +19,6 @@ A flutter app to notify users about vaccine slots availability in their area.
 ## Screenshots
 
 ![App Screenshot](https://raw.githubusercontent.com/KejariwalAyush/notify_me/master/screenshot.PNG)
+
+## Medium Article
+[https://medium.com/@ayush1kej/vaccine-notifier-in-flutter-948ced45c523](https://medium.com/@ayush1kej/vaccine-notifier-in-flutter-948ced45c523)
