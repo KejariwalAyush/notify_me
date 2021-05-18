@@ -1,6 +1,7 @@
 # Notify Me
 
 A flutter app to notify users about vaccine slots availability in their area.
+[Download it!](soau.ml/NotifyMe)
 
 ## Features
 
